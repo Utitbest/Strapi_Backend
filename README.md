@@ -1,61 +1,224 @@
-# 🚀 Getting started with Strapi
+Strapi Blog Project – Full Documentation
+📌 Overview
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This project is a full-stack blog application built using Strapi as the backend (Headless CMS) and Next.js as the frontend.
+It supports dynamic creation and management of Posts, Authors, and Categories, with clean API endpoints and a responsive UI.
 
-### `develop`
+Project folder structure:
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+Strapi_Blog_Site/
+├── strapi_backend/      # Strapi CMS backend
+└── strapi_frontend/     # Next.js frontend
 
-```
+🛠️ Technologies Used
+Backend (Strapi)
+
+Strapi v5 (Headless CMS)
+
+Node.js
+
+REST API
+
+SQLite (local)
+
+PostgreSQL (production)
+
+Frontend (Next.js)
+
+Next.js 14
+
+React
+
+Tailwind CSS
+
+Axios / Fetch API
+
+Deployment
+
+Render → Strapi backend + PostgreSQL
+
+Netlify → Next.js frontend
+
+📂 Project Architecture
+Backend Structure
+strapi_backend/
+├── src/
+│   ├── api/
+│   │   ├── post/
+│   │   ├── author/
+│   │   └── category/
+│   ├── config/
+│   ├── database/
+│   └── extensions/
+├── public/
+├── .env
+└── package.json
+
+Frontend Structure
+strapi_frontend/
+├── pages/
+├── components/
+├── styles/
+├── public/
+└── package.json
+
+🧩 Content Types & Relationships
+Post
+
+title (text)
+
+postId (UID)
+
+description (text)
+
+content (rich text)
+
+cover image (media)
+
+author → many-to-one
+
+category → many-to-one
+
+Author
+
+name (string)
+
+authorId(uid)
+
+description (text)
+
+avatar (media)
+
+posts → one-to-many
+
+Category
+
+name (string)
+
+posts → one-to-many
+
+Relationship Diagram
+Author 1 -------- ∞ Post ∞ -------- 1 Category
+
+⚙️ How to Run Locally
+1. Clone Repository
+git clone [<your-repo-url>](https://github.com/Utitbest/Strapi_Frontend)
+git clone [<your-repo-url>](https://github.com/Utitbest/Strapi_Backend) 
+
+Backend Setup (Strapi)
+2. Install Dependencies
+cd strapi_backend
+npm install
+
+3. Start Development Server
 npm run develop
-# or
-yarn develop
-```
 
-### `start`
+4. Environment Variables (.env)
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+Create a .env file in strapi_backend/:
 
-```
-npm run start
-# or
-yarn start
-```
 
-### `build`
+DATABASE_CLIENT=postgres
+DATABASE_HOST=your-host
+DATABASE_PORT=5432
+DATABASE_NAME=your-db
+DATABASE_USERNAME=your-user
+DATABASE_PASSWORD=your-password
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+APP_KEYS=your-app-keys
+JWT_SECRET=your-jwt-secret
+API_TOKEN_SALT=your-api-token-salt
+ADMIN_JWT_SECRET=your-admin-jwt
 
-```
-npm run build
-# or
-yarn build
-```
+Frontend Setup (Next.js)
+5. Install Dependencies
+cd strapi_frontend
+npm install
 
-## ⚙️ Deployment
+6. Run Frontend
+npm run dev
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+7. Frontend Environment Variables
 
-```
-yarn strapi deploy
-```
+Create .env.local in strapi_frontend/:
 
-## 📚 Learn more
+NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+🌍 Deployment Guide
+Backend Deployment (Render)
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+Steps:
 
-## ✨ Community
+Push backend to GitHub
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+Create Render Web Service
 
----
+Add Environment Variables from .env
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Set:
+
+Build Command: npm install
+Start Command: npm run start
+
+
+Deploy
+
+Connect a Managed PostgreSQL instance and update .env
+
+Frontend Deployment (Vercel)
+
+Steps:
+
+Push frontend to GitHub
+
+Import project into Vercel
+
+Add environment variable:
+
+NEXT_PUBLIC_STRAPI_URL=https://your-render-backend-url
+
+
+Deploy
+
+🔗 API Endpoints
+Posts
+GET /api/posts
+GET /api/posts/:id
+
+Authors
+GET /api/authors
+GET /api/authors/:id
+
+Categories
+GET /api/categories
+GET /api/categories/:id
+
+📖 Learning Resources Used
+
+Strapi Documentation → https://docs.strapi.io
+
+Next.js Documentation → https://nextjs.org/docs
+
+Stack Overflow
+
+Render Deployment Docs
+
+YouTube tutorials on Strapi CMS, Next.js, and PostgreSQL
+
+Key Features
+
+Fully functional Headless CMS
+
+Dynamic blog content with images
+
+Author & category filtering
+
+Tailwind-styled responsive UI
+
+API-first architecture
+
+Production deployment ready
+
+Author
+Utitbest Akpan
+Web Developer
