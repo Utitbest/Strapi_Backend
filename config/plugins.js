@@ -2,7 +2,7 @@ module.exports = ({ env }) => ({
   'transfer': {
     enabled: true,
     config: {
-      token: {s
+      token: {
         salt: env('TRANSFER_TOKEN_SALT'),
       },
     },
